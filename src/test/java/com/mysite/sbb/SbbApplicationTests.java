@@ -4,6 +4,7 @@ import com.mysite.sbb.answer.Answer;
 import com.mysite.sbb.answer.AnswerRepository;
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.question.QuestionRepository;
+import com.mysite.sbb.question.QuestionService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ class SbbApplicationTests {
 
     @Autowired
     private AnswerRepository answerRepository;
+
+    @Autowired
+    private QuestionService questionService;
 
     @Test
     void 질문저장() {
@@ -128,4 +132,12 @@ class SbbApplicationTests {
         assertThat(la.get(0).getId()).isEqualTo(1);
     }
 
+    @Test
+    void 질문여러개만들기() {
+        for (int i = 0; i < 300; i++) {
+            String subject = String.format("테스트 데이터 : [%03d]", i);
+            String content = "내용없음";
+            this.questionService.createQuestion(subject, content);
+        }
+    }
 }
