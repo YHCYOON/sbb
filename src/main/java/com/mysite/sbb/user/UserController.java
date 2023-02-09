@@ -43,8 +43,6 @@ public class UserController {
             bindingResult.reject("signupFailed", e.getMessage());
             return "signup_form";
         }
-
-
         return "redirect:/";
     }
 
@@ -52,4 +50,5 @@ public class UserController {
     public String login() {
         return "login_form";
     }
+
 }
